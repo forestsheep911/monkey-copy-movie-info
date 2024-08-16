@@ -55,28 +55,26 @@ const app = () => {
     copyBaseInfoButton.textContent = '信息'
     copyBaseInfoButton.classList.add('custom-btn', 'btn-6')
     copyBaseInfoButton.addEventListener('click', async () => {
-      if (movieBaseInfoEle) {
-        // find last <span> element in the root element and remove it
-        const lastSpan = movieBaseInfoEle.querySelector(':scope > span:last-child')
-        if (lastSpan) {
-          if (lastSpan.nextSibling) {
-            lastSpan.nextSibling.remove()
-          }
-          lastSpan.remove()
+      // find last <span> element in the root element and remove it
+      const lastSpan = movieBaseInfoEle.querySelector(':scope > span:last-child')
+      if (lastSpan) {
+        if (lastSpan.nextSibling) {
+          lastSpan.nextSibling.remove()
         }
-        const range = document.createRange()
-        range.selectNodeContents(movieBaseInfoEle)
-        const selection = window.getSelection()
-        if (!selection) {
-          return
-        }
-        selection.removeAllRanges()
-        selection.addRange(range)
-        try {
-          document.execCommand('copy')
-        } catch (err) {}
-        selection.removeAllRanges()
+        lastSpan.remove()
       }
+      const range = document.createRange()
+      range.selectNodeContents(movieBaseInfoEle)
+      const selection = window.getSelection()
+      if (!selection) {
+        return
+      }
+      selection.removeAllRanges()
+      selection.addRange(range)
+      try {
+        document.execCommand('copy')
+      } catch (err) {}
+      selection.removeAllRanges()
     })
     copyButtonContainer.append(copyBaseInfoButton)
   }
@@ -97,9 +95,6 @@ const app = () => {
     copyDescriptionButton.textContent = '简介'
     copyDescriptionButton.classList.add('custom-btn', 'btn-6')
     copyDescriptionButton.addEventListener('click', async () => {
-      if (!descriptionEle) {
-        return
-      }
       const range = document.createRange()
       range.selectNodeContents(descriptionEle)
       const selectedText = trimAllSpaces(range.toString())
