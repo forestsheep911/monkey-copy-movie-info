@@ -26,7 +26,9 @@ const app = () => {
 
     try {
       document.execCommand('copy')
-    } catch (err) {}
+    } catch (err) {
+      console.error('Failed to copy text: ', err)
+    }
     selection.removeAllRanges()
   })
   copyButtonContainer.append(copyTitleButton)
@@ -73,7 +75,9 @@ const app = () => {
       selection.addRange(range)
       try {
         document.execCommand('copy')
-      } catch (err) {}
+      } catch (err) {
+        console.error('Failed to copy text: ', err)
+      }
       selection.removeAllRanges()
     })
     copyButtonContainer.append(copyBaseInfoButton)

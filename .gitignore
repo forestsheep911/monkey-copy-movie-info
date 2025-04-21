@@ -60,3 +60,4 @@ $RECYCLE.BIN/
 
 # mac
 .DS_Store
+/dist
